@@ -1,0 +1,76 @@
+// Reddit, 96.44% @ Epoch #198, w/ Full
+// 96.6 w/ sss and layer norm and sampling
+// "arch": "slsl",
+// "num_layers": 2,
+{
+    "dataset": "reddit",
+    "model": "custom",
+    "arch": "sss",
+    "num_layers": 3,
+    "hidden_size": 256,
+    "layer_norm": true,
+    "dropout": 0.5,
+
+    // "lr": 1e-3,
+    "val_patience": 500,
+    
+    // "num_epochs": 1000,
+    // "minibatch_size": 32,
+    // "local_updates": 1,
+    
+    // correction alone test
+    // "num_epochs": 50,
+    // "minibatch_size": 256,
+    // "local_updates": 1,
+    // "lr": 1e-2,
+    
+    // Local Sampler
+    "num_samplers": 4,
+    "sampler": "neighbor",
+    "num_neighbors": [10, 10, 10],
+    
+    // "num_epochs": 500,
+    // "local_updates": 64,
+    
+    // "local_updates": 256,
+    // "minibatch_size": 32,
+
+    "num_epochs": 75,
+    "local_updates": 64,
+    "minibatch_size": 256,
+    "rho": 1.1,
+
+    // Server Correction
+    "server_sampler": "neighbor",
+    "server_minibatch": "random",
+    "server_num_neighbors": [10, 10, 10],
+    "server_updates": 1,
+    // "server_minibatch_size": 256,
+    "server_minibatch_size": 2048,
+    "server_start_epoch": 0,
+    "server_lr": 1e-2,
+}
+
+// "server_minibatch": "stratified",
+
+// {
+//     "dataset": "reddit",
+//     "model": "custom",
+//     "arch": "sss",
+//     "num_layers": 3,
+//     "hidden_size": 256,
+//     "layer_norm": true,
+
+//     "dropout": 0.5,
+//     "lr": 1e-2,
+//     "num_epochs": 300,
+//     "val_patience": 100,
+    
+//     // Local Sampler
+//     "sampler": "neighbor",
+//     // "minibatch_size": 256,
+//     "minibatch_size": 2048,
+//     // "local_updates": 8,
+//     "local_updates": 1,
+//     "num_neighbors": [10, 10, 10],
+// }

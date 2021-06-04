@@ -1,0 +1,39 @@
+// Flickr, 52%
+{
+    "dataset": "flickr",
+    "num_layers": 2,
+    "model": "custom",
+    "arch": "ssl",
+    "hidden_size": 256,
+    "dropout": 0.2,
+    "input_norm": true,
+    "layer_norm": true,
+    
+    "val_patience": 500,
+    
+    
+    // Local Sampler
+    "num_sampler": 4,
+    "sampler": "neighbor",
+    "num_neighbors": [10,10],
+    
+    "lr": 1e-3,
+    // "minibatch_size": 128,
+    // "local_updates": 1,
+    
+    "num_epochs": 50,
+    "minibatch_size": 64,
+    "local_updates": 8,
+    "rho": 1.0,
+    "inc_k": true,
+    
+    // Server Correction
+    "server_sampler": "neighbor",
+    "server_num_neighbors": [10, 10],
+    "server_updates": 1,
+    "server_minibatch_size": 512,
+    "server_minibatch": "random",
+    "server_start_epoch": 0,
+    "server_lr": 5e-3,
+    
+}

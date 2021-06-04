@@ -1,0 +1,9 @@
+// Mag, 40?
+{
+    "dataset": "mag",
+    "loss": "bceloss",
+    "num_layers": 3,
+    "hidden_size": 256,
+    "num_epochs": 500,
+    "layer_norm": false
+}

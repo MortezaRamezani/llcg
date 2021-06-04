@@ -1,0 +1,20 @@
+// Papers100M, 
+{
+    "dataset": "papers100M",
+    "num_layers": 3,
+    "hidden_size": 256,
+    "dropout": 0.5,
+    "layer_norm": false,
+    "cpu_val": true,
+    "lr": 1e-2,
+    
+    "num_epochs": 500,
+    "val_patience": 50,
+
+    // Local Sampler
+    "num_samplers" : 1,
+    "sampler": "neighbor",
+    "local_updates": 8,
+    "minibatch_size": 8192,
+    "num_neighbors": [10, 10, 10],
+}

@@ -1,0 +1,8 @@
+torch==1.7.0
+torch-geometric==1.7.0 # from source
+torch-cluster==1.5.8 # from source
+torch-scatter==2.0.5 # from source
+torch-sparse==0.6.8 # from source, compiled with metis enable
+ogb==1.3.1
+tqdm==4.54.1
+commentjson==0.9.0
