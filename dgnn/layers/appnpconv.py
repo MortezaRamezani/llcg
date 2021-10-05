@@ -5,13 +5,8 @@ import torch.nn.functional as F
 from torch_sparse import spmm
 import math
 
-
-def glorot(tensor):
-    if tensor is not None:
-        stdv = math.sqrt(6.0 / (tensor.size(-2) + tensor.size(-1)))
-        tensor.data.uniform_(-stdv, stdv)
         
-class GConv(nn.Module):
+class APPNPConv(nn.Module):
     """[summary]
 
     Arguments:
@@ -33,17 +28,12 @@ class GConv(nn.Module):
         # use to distinguish from other layers
         self.graph_layer = True
 
-        if 'layer_id' in kwargs:
-            self.layer_id = kwargs['layer_id']
+        self.layer_id = kwargs['layer_id'] if 'layer_id' in kwargs else '0'
+        self.alpha = kwargs['alpha'] if 'alpha' in kwargs else 0.2
 
-        # self.linear.bias.data.fill_(0)
-        # glorot(self.linear.weight)
-
-    def forward(self, adj, h, *args):
-
-        h = adj.spmm(h)
-        h = self.linear(h)
-        return h
+    def forward(self, adj, h, h0, *args):
+        output = (1 - self.alpha) * adj.spmm(h)  + self.alpha * h0[:adj.size(0)]
+        return output
 
     def __repr__(self):
         return self.__class__.__name__ + "[{}] ({}->{})".format(

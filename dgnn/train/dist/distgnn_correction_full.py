@@ -15,7 +15,7 @@ from ...data import samplers, partition
 from ...utils import helpers as H
 
 
-class DistGNNCorrection(DistGNN):
+class DistGNNCorrectionFull(DistGNN):
 
     def __init__(self, config, dataset):
         super().__init__(config, dataset)
@@ -29,7 +29,7 @@ class DistGNNCorrection(DistGNN):
         if self.config.server_sampler == 'subgraph':
             self.server_trainloader = samplers.SubGraphSampler(full_adj,
                                                                self.config.server_minibatch_size,
-                                                               num_workers=self.config.num_samplers,
+                                                               num_workers=self.config.server_num_samplers,
                                                                num_layers=self.config.num_layers,
                                                                num_batches=self.config.server_updates,
                                                                minibatch=self.config.server_minibatch,

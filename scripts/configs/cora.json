@@ -6,6 +6,12 @@
     "val_patience": 100,
     "lr": 1e-3,
     
+    // "model": "gat",
+    // "layer": "gatconv",
+
+    "model": "appnp",
+    "layer": "appnpconv",
+
     // Local Sampler
     "num_samplers": 4,
     "sampler": "neighbor",

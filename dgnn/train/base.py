@@ -107,6 +107,13 @@ class Base(object):
 
         print(f'Total training time: {np.sum(self.stats.train_time):.3f} sec.')
 
+
+        # start_time = time.perf_counter()
+        # for epoch in self.tbar:     
+        #     self.train(epoch)
+        # end_time = time.perf_counter()
+        # print('Total train:', end_time-start_time)
+
     def calc_score(self, pred, batch_labels):
 
         # Same device (GPU) metrics

@@ -41,5 +41,5 @@
     // "layer": "gatconv",
     // "model": "appnp",
     // "layer": "appnpconv",    
-    "num_epochs": 5,
+    // "num_epochs": 5,
 }

@@ -1,0 +1,50 @@
+// # Protein: 
+// 74%  gcn, 3, 256
+// 77%  sage, 3, 256
+// 79.41% SAGE
+{
+    "dataset": "proteins",
+    "loss": "bceloss",
+    "layer": "sageconv",
+    "num_layers": 3,
+    "hidden_size": 256,
+    "input_norm": false,
+    "layer_norm": false,
+    
+    // "num_epochs": 1000,
+    // "val_step": 5,
+
+    "val_patience": 500,
+
+    // Local Sampler
+    "num_samplers": 4,
+    "sampler": "neighbor",
+    "num_neighbors": [10, 10, 10],
+    "lr": 1e-3,
+
+    // "num_epochs": 200,
+    // "local_updates": 1,
+
+    "num_epochs": 100,
+    "local_updates": 32,
+    "minibatch_size": 512,
+    "rho": 1.00,
+    "inc_k": false,
+
+    // Server Correction
+    "server_sampler": "neighbor",
+    "server_minibatch": "random",
+    "server_num_neighbors": [10, 10, 10],
+    "server_updates": 1,
+    "server_minibatch_size": 4096,
+    "server_start_epoch": 0,
+    "server_lr": 2e-2,
+    
+    // "model": "gat",
+    // "layer": "gatconv",
+    "model": "appnp",
+    "layer": "appnpconv",    
+    // "num_epochs": 5,
+    
+
+}

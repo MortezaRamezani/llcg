@@ -14,7 +14,12 @@ if os.environ['LOGNAME'] == 'mfr5226':
 # base_dir = '../../../outputs/dist-gnn/721/'
 # base_dir = '../../../outputs/dist-gnn/722/'
 # base_dir = '../../../outputs/dist-gnn/723/'
-base_dir = '../../../outputs/dist-gnn/724/'
+# base_dir = '../../../outputs/dist-gnn/724/'
+
+# base_dir = '../../../outputs/dist-gnn/801/' # main table
+base_dir = '../../../outputs/dist-gnn/802/' # ablation
+
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='')
@@ -35,6 +40,8 @@ if __name__ == "__main__":
 
     if args.mode == 'full':
         trainer = train.Full
+    elif args.mode == 'dist':
+        trainer = train.old.Distributed
     elif args.mode == 'dgnnfull':
         trainer = train.serial.DistGNNFull
     elif args.mode == 'dgnnfullcor':
@@ -49,6 +56,8 @@ if __name__ == "__main__":
         trainer = train.serial.DistGNNStale
     elif args.mode == 'd2gnn':
         trainer = train.dist.DistGNN
+    elif args.mode == 'd2gnnfull':
+        trainer = train.dist.DistGNNFull
     elif args.mode == 'd2gnncor':
         trainer = train.dist.DistGNNCorrection
     elif args.mode == 'dgl':
@@ -62,7 +71,7 @@ if __name__ == "__main__":
         # 'part_method': 'metis',
         # 'part_method': 'overhead', 'part_args': 10,
         'weight_avg': True,
-        'server_update': 1,
+        'server_updates': 1,
     }
 
 
@@ -88,7 +97,7 @@ if __name__ == "__main__":
 
     tmp_global['server_minibatch_size'] = args.bs
     tmp_global['local_updates'] = args.k
-    tmp_global['server_updates'] = args.s
+    # tmp_global['server_updates'] = args.s
 
     global_config.update(local_config)
     global_config.update(tmp_global)

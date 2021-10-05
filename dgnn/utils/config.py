@@ -47,6 +47,7 @@ class Config(object):
         self.val_step = 1
 
         self.gpu = 0
+        self.cpu = False
         self.cpu_val = False
         self.num_gpus = 4
         
